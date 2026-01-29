@@ -1,0 +1,34 @@
+grafana:
+  adminUser: admin
+  adminPassword: supersecretpwd
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.demo.localhost
+    path: /
+    pathType: Prefix
+    tls: []
+  service:
+    type: ClusterIP
+  sidecar:
+    dashboards:
+      enabled: true
+    datasources:
+      enabled: true
+
+prometheus:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - prometheus.demo.localhost
+    paths:
+      - /
+    pathType: Prefix
+  service:
+    type: ClusterIP
+  prometheusSpec:
+    serviceMonitorSelector: {}
+    podMonitorSelector: {}
+    ruleSelector: {}
